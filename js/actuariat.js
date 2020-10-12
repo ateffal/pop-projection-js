@@ -73,7 +73,7 @@ function add_mortality_table(Name, lx) {
 }
 
 
-function sfs_lx(age, table) {
+function lx(age, table) {
 
 
     //Check age
@@ -95,17 +95,18 @@ function sfs_lx(age, table) {
 
 }
 
-// def sfs_lx(Age, Table):
+function nPx(age, n, table) {
 
-//     if Age > 120:
-//         return 0
-//     if Age < 0:
-//         raise NameError('Age invalide !')
-//     if Table not in mortality_tables:
-//         raise NameError('Table introuvable !')
-//     return mortality_tables[Table][Age]
+    l1 = lx(age + n, table);
+    l2 = lx(age, table);
+    if (l2 != 0) {
+        return lx(age + n, table) / lx(age, table)
+    }
 
-// #%%
+    else {
+        return 0
+    }
+}
 
 // def sfs_nPx(Age, n, Table):
 //     l1 = sfs_lx(Age + n, Table)
