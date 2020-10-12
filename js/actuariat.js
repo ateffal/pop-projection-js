@@ -108,14 +108,17 @@ function nPx(age, n, table) {
     }
 }
 
-// def sfs_nPx(Age, n, Table):
-//     l1 = sfs_lx(Age + n, Table)
-//     l2 = sfs_lx(Age, Table)
-//     if l2 != 0:
-//         return sfs_lx(Age + n, Table) / sfs_lx(Age, Table)
-//     else:
-//         return 0
 
+function nQx(age, n, table) {
+
+    if (lx(age, table) != 0) {
+        return (1 - lx(age + n, table) / lx(age, table))
+    }
+
+    else {
+        return 1
+    }
+}
 
 
 
