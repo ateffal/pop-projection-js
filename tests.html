@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" href="">
 
-    <title>Comfy House</title>
+    <title>pop-projection JS</title>
 
     <script src="js/actuariat.js"> </script>
     <!-- font awesome -->
@@ -20,12 +20,66 @@
 
 <body>
 
+    <!--<script>-->
+
+    <!--    var x = 5;-->
+
+    <!--    console.log(mortality_tables);-->
+    <!--    console.log(nQx(50, 10,'TD 73-77'));-->
+
+    <!--</script>-->
+
+
+
+    <input type="file" onchange="readFiles(event)" multiple>
+
     <script>
+        function readFiles(event) {
+            var fileList = event.target.files;
 
-        var x = 5;
+            for (var i = 0; i < fileList.length; i++) {
+                loadAsText(fileList[i]);
+            }
+        }
 
-        console.log(mortality_tables);
-        console.log(nQx(50, 10,'TD 73-77'));
+        function loadAsText(theFile) {
+            var reader = new FileReader();
+
+            reader.onload = function (loadedEvent) {
+                // result contains loaded file.
+                var txt = loadedEvent.target.result;
+
+                txt = txt.split("\n");
+
+                var table = txt.map(splitLine);
+
+                var n = 10;
+
+                //print the n first lines
+                table.forEach(element => {
+
+                    element.forEach(x => {
+                        console.log(x)
+
+                    });
+
+                    console.log("----------------------------")
+
+
+                });
+
+
+
+            }
+            reader.readAsText(theFile);
+        }
+
+        var colsNames = '';
+
+        function splitLine(value, index, array) {
+
+            return value.split(";");
+        }
 
     </script>
 
