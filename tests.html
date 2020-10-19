@@ -7,15 +7,43 @@
 
     <link rel="shortcut icon" href="">
 
+    <!-- Bootstrap 4 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+     <!-- Bootstrap 4 -->
+
     <title>pop-projection JS</title>
 
     <script src="js/actuariat.js"> </script>
+    <script src="js/genHtmlTable.js"> </script>
+
     <!-- font awesome -->
 
     <script src="https://kit.fontawesome.com/e6de0c35a1.js" crossorigin="anonymous"></script>
 
     <!-- custom css-->
     <!--<link rel="stylesheet" href="styles.css">-->
+
+
+
+    <style>
+        div {
+          max-width: 500px;
+          max-height: 500px;
+          overflow: auto;
+        }
+        </style>
+
 </head>
 
 <body>
@@ -32,6 +60,9 @@
 
 
     <input type="file" onchange="readFiles(event)" multiple>
+    <div>File : </div>
+    <div id="output"></div>
+    <h3>---------------------------------------</h3>
 
     <script>
         function readFiles(event) {
@@ -49,13 +80,17 @@
                 // result contains loaded file.
                 var txt = loadedEvent.target.result;
 
+                //split each line
                 txt = txt.split("\n");
 
+                // splite columns
                 var table = txt.map(splitLine);
 
-                var n = 10;
+                //display in output
+                document.getElementById('output').innerHTML = genHtmlTable(table);
 
-                //print the n first lines
+
+                //print file in console
                 table.forEach(element => {
 
                     element.forEach(x => {
